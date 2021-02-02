@@ -5,8 +5,8 @@ DROPTYPE = 2
 DROPOUT = 0.1
 EPOCHS = 50
 # DATASET
-from dgl.data import CoraFull
-DAT = CoraFull()
+from dataloader.CoraFull import load_data
+
 IN_FEAT = 8710
 H_FEAT = 256
 OUT_FEAT = 70
@@ -40,24 +40,7 @@ dgl.random.seed(0)
 ###############################################################################
 # We load the dataset using DGL's built-in data module.
 
-def load_data(ds, split = 0.8):
-    from dgl.data import CoraFullDataset
-    data = CoraFullDataset()
-    g = data[0]
-    num_class = data.num_classes
-    feat = g.ndata['feat']  # get node feature
-    label = g.ndata['label']
-    
-    
-    mask = torch.BoolTensor(g.num_nodes())
-    mask[:] = False
-    split_idx = int((g.num_nodes()*split))
-    mask[:split_idx] = True
-    train_mask = mask
-    test_mask = torch.logical_not(train_mask)
-    return g, feat, label, train_mask, test_mask
-
-g, features, labels, train_mask, test_mask = load_data(DAT)
+g, features, labels, train_mask, test_mask = load_data()
 ###############################################################################
 
 
