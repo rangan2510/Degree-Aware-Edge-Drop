@@ -18,3 +18,7 @@ def load_data(split = 0.8):
     in_feat = g.ndata['feat'].shape[1]
     out_feat = int(max(label) + 1)
     return g, feat, label, train_mask, test_mask, in_feat, out_feat
+
+# %%
+g, feat, label, train_mask, test_mask, in_feat, out_feat = load_data()
+# %%
