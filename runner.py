@@ -8,19 +8,20 @@ import numpy as np
 import psutil
 from models import Net
 from log.logger import Logger
+from log.summaryWriter import Summarize
 dgl.seed(0)
 torch.manual_seed(0)
 dgl.random.seed(0)
 
 #%% ###############################################################################
 # Configuration
-RUNS = 1
-EDROPTYPE = 2
+RUNS = 10
+EDROPTYPE = 0
 EDROPOUT = 0.5
 EDROPLO = 0.01
 EDROPHI = 0.9
 NDROPOUT = 0.1
-EPOCHS = 100
+EPOCHS = 10
 NORM = True
 N_BLOCKS = 2
 
@@ -53,6 +54,9 @@ print("CPU cores:", psutil.cpu_count())
 
 g = dgl.add_self_loop(g)
 
+best_scores =[]
+summary_path = None
+
 for run in range(RUNS):
     RUN_ID = run+1
     print('-' ,RUN_ID, '-'*50)
@@ -67,6 +71,7 @@ for run in range(RUNS):
     logger = Logger(save_path="results",dataset_name="CoraFull", model_name=model_name, run_id=RUN_ID)
     logger.createDir()
     logger.start()
+    summary_path = logger.path
 
     for epoch in range(EPOCHS):
         if epoch >=3:
@@ -97,8 +102,13 @@ for run in range(RUNS):
             best_epoch = epoch
 
     print("Best Test Acc {:.4f} at Epoch {:05d}".format(best_score, best_epoch))
+    best_scores.append(best_score)
     logger.saveModel(net)
+    
     # savefile = str(DROPTYPE) + "_" + str(RUN_ID) + "_" + str(N_BLOCKS) + "_" + str(int(best_score*10**5)) + '.weights'
     # torch.save(net.state_dict(),savefile)
+    
     del net
     del logger
+
+summary = Summarize(best_scores, summary_path)

@@ -31,4 +31,3 @@ class Logger:
     def saveModel(self, model):
         model_file = self.path + "\\" + self.model_name + ".pth"
         torch.save(model.state_dict(),model_file)
-

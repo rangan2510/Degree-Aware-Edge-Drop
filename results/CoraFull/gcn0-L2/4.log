@@ -1,0 +1,10 @@
+Epoch 00000 , Loss 4.4967 , Test Acc 0.1990 , Time(s) nan
+Epoch 00001 , Loss 3.5108 , Test Acc 0.3082 , Time(s) nan
+Epoch 00002 , Loss 3.4021 , Test Acc 0.3915 , Time(s) nan
+Epoch 00003 , Loss 3.2289 , Test Acc 0.4115 , Time(s) 1.5090
+Epoch 00004 , Loss 3.1232 , Test Acc 0.4233 , Time(s) 1.4847
+Epoch 00005 , Loss 3.0087 , Test Acc 0.4112 , Time(s) 1.5027
+Epoch 00006 , Loss 2.8918 , Test Acc 0.4170 , Time(s) 1.5622
+Epoch 00007 , Loss 2.7878 , Test Acc 0.4307 , Time(s) 1.5873
+Epoch 00008 , Loss 2.7005 , Test Acc 0.4430 , Time(s) 1.5864
+Epoch 00009 , Loss 2.6183 , Test Acc 0.4443 , Time(s) 1.6059
