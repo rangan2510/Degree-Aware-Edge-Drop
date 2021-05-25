@@ -112,3 +112,4 @@ for run in range(RUNS):
     del logger
 
 summary = Summarize(best_scores, summary_path)
+summary.writeSummary()
